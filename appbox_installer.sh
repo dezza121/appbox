@@ -127,9 +127,9 @@ setup_sonarr() {
     apt install -y debconf-utils
     echo "sonarr sonarr/owning_user string appbox" | debconf-set-selections
     echo "sonarr sonarr/owning_group string appbox" | debconf-set-selections
-    apt -y install sonarr libmediainfo0v5 || true
+    apt -y install nzbdrone libmediainfo0v5 || true
     # Generate config
-    /bin/su -s /bin/bash -c "/usr/bin/mono --debug /usr/lib/sonarr/bin/Sonarr.exe -nobrowser" appbox &
+    /bin/su -s /bin/bash -c "/usr/bin/mono --debug /usr/lib/sonarr/bin/NzbDrone.exe -nobrowser" appbox &
     until grep -q 'UrlBase' /home/appbox/.config/Sonarr/config.xml; do
         sleep 1
     done
